@@ -1,0 +1,72 @@
+<div class="container">
+    <!-- <div>
+        <button routerLink="/add" type="button" class="btn btn-dark">Agregar</button>
+    </div>
+    <div>
+        <button (click)="outLogin()" routerLink="/login" type="button" class="btn btn-dark">Cerrar Sesion</button>
+    </div>
+     -->
+     <ul class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Opciones
+        </a>
+        <dl class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a routerLink="/add" class="dropdown-item" href="#">Registrar Administrador</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <dt >Gestionar Buses</dt>
+            <dd routerLink="/Mostrar_Horario" class="dropdown-item" style="cursor: pointer;">Mostrar </dd>
+            <li><hr class="dropdown-divider"></li>
+            <dt >Gestionar rutas</dt>
+            <dd routerLink="/Mostrar_Rutas" class="dropdown-item" style="cursor: pointer;">Mostrar </dd>
+            <li><hr class="dropdown-divider"></li>
+            <li><a (click)="outLogin()" class="dropdown-item" href="#">Cerrar Sesion</a></li>
+        </dl>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <!-- <li><a routerLink="/add" class="dropdown-item" href="#">Registrar Administrador</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#" disabled="disabled">Gestionar Buses</a></li>
+          <li><a routerLink="/Mostrar_Horario" class="dropdown-item" href="#">Mostrar Buses</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#" readonly="readonly">Gestionar Rutas</a></li>
+          <li><a routerLink="/Mostrar_Rutas" class="dropdown-item" href="#">Mostrar Rutas</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a (click)="outLogin()" class="dropdown-item" href="#">Cerrar Sesion</a></li> -->
+        </ul>
+        
+    </ul>
+    
+    
+    <p>Lista de Administradores</p>
+    <table class="table">
+        <thead>
+        <tr class="table-dark">
+            <th scope="col">id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Nombre Usuario</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Contraseña</th>
+            <th scope="col">Edicion</th>
+            <th scope="col">Elimiar</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let admin of ListarAdmin; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{admin.nombre}}</td>
+                <td>{{admin.apellido}}</td>
+                <td>{{admin.nombreus}}</td> 
+                <td>{{admin.correo}}</td>
+                <td>{{admin.password}}</td>  
+                <td>
+                    <button (click)="modificar(admin.id)" type="button" class="btn btn-primary">Editar</button>
+                    
+                </td>
+                <td>
+                    <button (click)="eliminar(admin.id)" type="button" class="btn btn-danger">Borrar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

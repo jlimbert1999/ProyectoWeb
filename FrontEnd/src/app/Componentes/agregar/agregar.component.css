@@ -1,0 +1,12 @@
+div{
+    width: 500px;
+}
+.alet-danger{
+    color: red;
+    background: wheat;
+    background-color: white;
+    margin-bottom: 5px;
+}
+.container-error-message{
+    padding: 3px;
+}

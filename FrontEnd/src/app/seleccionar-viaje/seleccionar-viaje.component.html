@@ -1,0 +1,47 @@
+<div class="container">
+    <h1>Salida de: </h1>
+    <div class="form-group">
+        <label for="origen" class="form-control">Origen:  </label>
+
+        <input type="text" id="origenbus" class="form-control" name="filterPost" [(ngModel)]="filterPost" [(ngModel)]="datosviaje.origenbus" readonly="readonly">
+        <label for="destino" class="form-control">Destino:  </label>
+        <input type="text" id="destinobus" class="form-control" name="filterPost1" [(ngModel)]="filterPost1" [(ngModel)]="datosviaje.destinobus" readonly="readonly">
+        <label for="destino" class="form-control">Fecha:  </label>
+        <input type="text" id="destinobus" class="form-control" name="filterPost2" [(ngModel)]="filterPost2" [(ngModel)]="datosviaje.fecha" readonly="readonly">
+    </div>
+    <div>
+        <button type="button" class="btn btn-dark" routerLink="/inicio">Regresar</button>
+    </div>
+    <div>
+        <h1>Viajes Disponibles</h1>
+        <table class="table">
+            <thead class="thead-dark" id="cabe">
+                <tr>
+                    <th scope="col">fecha</th>
+                    <th scope="col">Origen</th>
+                    <th scope="col">Destino</th>
+                    <th scope="col">Hora</th>
+                    <th scope="col">Nombre Bus</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Precio Bs</th>
+                    <th scope="col">opcion</th>
+                </tr>
+            </thead>
+            <tbody class="thead-dark" id="cabe">
+                <tr *ngFor="let buses of BusListas | filterclientdestinos:filterPost:filterPost1:filterPost2">
+                    <td>{{buses.fecha}}</td>
+                    <td>{{buses.origenbus}}</td>
+                    <td>{{buses.destinobus}}</td>
+                    <td>{{buses.hora}}</td>
+                    <td>{{buses.nombrebus}}</td>
+                    <td>{{buses.tipobus}}</td>
+                    <td>{{buses.precio}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" (click)="sendtoRegisterTicket()">seleccionar</button>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

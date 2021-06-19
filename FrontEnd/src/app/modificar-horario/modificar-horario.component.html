@@ -1,0 +1,109 @@
+<body>
+    <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+
+        <div class="container">
+            <div class="card login-card">
+                <div class="row no-gutters">
+                    <div class="col-md-5">
+                        <img src="assets/img/logo.jpg" alt="login" class="login-card-img">
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <form>
+                                <h3>Modificar Bus</h3>
+                                <div class="form-group" id="be">
+                                    <!-- cargar origen destino respecto al origen -->
+                                    <label for="origen" class="form-control">Origen: </label>
+                                    <input [(ngModel)]="buses.origenbus" type="text" class="form-control" name="origenbus" placeholder="Ejm: Oruro" readonly="readonly">
+
+                                </div>
+
+                                <div class="form-group" id="be">
+                                    <label for="destino" class="form-control">Destino: </label>
+                                    <input [(ngModel)]="buses.destinobus" type="text" class="form-control" name="destinobus" placeholder="Ejm: Cochabamba" readonly="readonly">
+                                </div>
+
+                                <div class="form-group" id="be">
+                                    <label class="form-control">Fecha: </label>
+                                    <input [(ngModel)]="buses.fecha" type="date" class="form-control" name="fecha" readonly="readonly">
+                                </div>
+
+                                <div class="form-group" id="be" [formGroup]="registroForm">
+                                    <label class="form-control">Hora: </label>
+
+                                    <input [(ngModel)]="buses.hora" type="time" class="form-control" name="hora" formControlName="hora">
+                                </div>
+                                <div class="alert-danger" *ngIf="hora && hora.invalid  && (hora.dirty || hora.touched)">
+
+
+
+                                    <div class="container-error-message" *ngIf="hora.errors?.required">
+                                        La hora del bus es requerido
+
+                                    </div>
+
+
+
+                                </div>
+                                <div class="form-group" id="be" [formGroup]="registroForm">
+                                    <label class="form-control">Nombre Bus: </label>
+                                    <input [(ngModel)]="buses.nombrebus" type="text" class="form-control" placeholder="Nombre de bus" name="nombrebus" formControlName="nombrebus">
+                                </div>
+                                <div class="alert-danger" *ngIf="nombrebus && nombrebus.invalid  && (nombrebus.dirty || nombrebus.touched)">
+
+                                    <div class="container-error-message" *ngIf="nombrebus.errors?.pattern">
+                                        El nombre puede tener letras minusculas - mayusculas - numeros
+                                    </div>
+
+                                    <div class="container-error-message" *ngIf="nombrebus.errors?.required">
+                                        El nombre del bus es requerido
+
+                                    </div>
+
+                                    <div class="container-error-message" *ngIf="nombrebus.errors?.minlength">
+                                        El nombre del bus debe tener almenos 3 letras
+
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="be">
+                                    <label for="tipo" class="form-control">Tipo </label>
+                                    <input [(ngModel)]="buses.tipobus" type="text" name="tipo" id="tipo" class="form-control" name="tipobus" readonly="readonly">
+
+
+                                </div>
+
+
+                                <div class="form-group" id="be" [formGroup]="registroForm">
+                                    <label class="form-control">Precio: </label>
+                                    <input [(ngModel)]="buses.precio" type="text" class="form-control" placeholder="Precio" name="precio" placeholder="Precio" name="precio" formControlName="precio">
+                                </div>
+                                <div class="alert-danger" *ngIf="precio && precio.invalid  && (precio.dirty || precio.touched)">
+
+                                    <div class="container-error-message" *ngIf="precio.errors?.min">
+                                        El precio no puede ser menor a 50 bs
+                                    </div>
+
+                                    <div class="container-error-message" *ngIf="precio.errors?.max">
+                                        El precio no puede ser mayor a 250 bs
+                                    </div>
+
+                                    <div class="container-error-message" *ngIf="precio.errors?.required">
+                                        El precio es requerido
+
+                                    </div>
+                                </div>
+                                <div>
+                                    <button (click)="modificar()" id="bo2" type="button">Guardar</button>
+                                </div>
+                            </form>
+                            <form>
+                                <input id="bo1" type="submit" value="Cancelar" routerLink="/Mostrar_Horario">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>

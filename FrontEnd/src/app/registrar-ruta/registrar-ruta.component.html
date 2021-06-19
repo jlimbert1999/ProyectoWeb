@@ -1,0 +1,71 @@
+<body>
+    <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+
+        <div class="container">
+            <div class="card login-card">
+                <div class="row no-gutters">
+                    <div class="col-md-5">
+                        <img src="assets/img/logo.jpg" alt="login" class="login-card-img">
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <form [formGroup]="registroForm" method="POST">
+                                <h3>Registro De Rutas</h3>
+                                <div class="form-group" id="be">
+                                    <!-- cargar origen destino respecto al origen -->
+                                    <label for="origen" class="form-control">Origen: </label>
+                                    <input [(ngModel)]="ruta.origen" type="text" class="form-control" placeholder="Ejm: oruro" name="origen" formControlName="origen">
+
+                                </div>
+                                <div class="alert-danger" *ngIf="origen && origen.invalid  && (origen.dirty || origen.touched)">
+
+                                    <div class="container-error-message" *ngIf="origen.errors?.pattern">
+                                        El nombre del origen solo puede tener letras minusculas
+                                    </div>
+
+                                    <div class="container-error-message" *ngIf="origen.errors?.required">
+                                        El origen de la ruta es requerido
+
+                                    </div>
+
+                                    <div class="container-error-message" *ngIf="origen.errors?.minlength">
+                                        El origen de la ruta debe tener almenos 3 letras
+
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="be">
+                                    <label for="destino" class="form-control">Destino: </label>
+                                    <input [(ngModel)]="ruta.destino" type="text" class="form-control" placeholder="Ejm: cochabamba" name="destino" formControlName="destino">
+                                </div>
+                                <div class="alert-danger" *ngIf="destino && destino.invalid  && (destino.dirty || destino.touched)">
+
+                                    <div class="container-error-message" *ngIf="destino.errors?.pattern">
+                                        El nombre del destino solo puede tener letras minusculas
+                                    </div>
+
+                                    <div class="container-error-message" *ngIf="destino.errors?.required">
+                                        El destino de la ruta es requerido
+
+                                    </div>
+
+                                    <div class="container-error-message" *ngIf="destino.errors?.minlength">
+                                        El destino de la ruta debe tener almenos 3 letras
+
+                                    </div>
+
+                                </div>
+                                <div>
+                                    <button (click)="agregar()" id="bo2" type="button">Registra</button>
+                                </div>
+                            </form>
+                            <form action="index.html">
+                                <input id="bo1" type="submit" value="Cancelar" routerLink="/Mostrar_Rutas">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>

@@ -1,0 +1,45 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+<br>
+
+<form action="/send-email" method="POST">
+   
+    <div class="container">
+        <h2>Ingrese sus datos para su factura</h2>
+        <div class="input-group mb-3">
+            <span  class="input-group-text" id="basic-addon1">Nombre</span>
+            <input [(ngModel)]="datos.nombre" type="text" class="form-control" placeholder="................." aria-label="Username" aria-describedby="basic-addon1" name="nombre">
+            <span class="input-group-text" id="basic-addon1">Apellido</span>
+            <input [(ngModel)]="datos.apellido" type="text" class="form-control" placeholder="................." aria-label="Username" aria-describedby="basic-addon1" name="apellido">
+          </div>
+          <!-- nombre, apellido, telefono,cantidad, correo, ci, fecha -->
+
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon3">Telefono</span>
+            <input [(ngModel)]="datos.telefono" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="telefono">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon3" for="points">Cantidad</span>
+            <input [(ngModel)]="datos.cantidad" type="number" class="form-control" id="basic-url" aria-describedby="basic-addon3" step="1" name="cantidad">
+          </div>
+          
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon3">Correo</span>
+            <input [(ngModel)]="datos.correo" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="correo">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon3">CI</span>
+            <input [(ngModel)]="datos.ci" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="correo">
+
+            <span class="input-group-text" id="basic-addon3">Fecha de Nacimiento</span>
+            <input [(ngModel)]="datos.fecha" type="date" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="correo">
+          </div>
+          
+          <button (click)="enviarCorreo()" class="btn btn-primary btn-block" >Enviar </button>
+          
+
+    </div>
+
+</form>
+
+

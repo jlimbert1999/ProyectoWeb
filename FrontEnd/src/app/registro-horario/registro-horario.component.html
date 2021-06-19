@@ -1,0 +1,177 @@
+<body>
+    <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+
+        <div class="container">
+            <div class="card login-card">
+                <div class="row no-gutters">
+                    <div class="col-md-5">
+                        <img src="assets/img/logo.jpg" alt="login" class="login-card-img">
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <form [formGroup]="registroForm" method="POST">
+                                <h3>Registrar Bus</h3>
+                                <div class="form-group" id="be">
+                                    <!-- cargar origen destino respecto al origen -->
+
+                                    <label for="origen" class="form-control">Origen: </label>
+                                    <select [(ngModel)]="buses.origenbus" class="form-control" name="filterPost" [(ngModel)]="filterPost" formControlName="origenbus">
+                                        <option value="--">--</option>
+                                        <option  *ngFor="let ruta of RutasL"  >{{ruta}}</option> 
+                                    </select>
+                                    <!--<input [(ngModel)]="buses.destinobus" type="text" class="form-control" placeholder="Ejm: cochabamba" name="destinobus">-->
+                                </div>
+                                <div class="alert-danger" *ngIf="origenbus && origenbus.invalid  && (origenbus.dirty || origenbus.touched)">
+
+                                    <div class="container-error-message" *ngIf="origenbus.errors?.pattern">
+                                        El nombre del origen solo puede tener letras minusculas
+                                    </div>
+
+                                    <div class="container-error-message" *ngIf="origenbus.errors?.required">
+                                        El origen del bus es requerido
+
+                                    </div>
+
+                                    <div class="container-error-message" *ngIf="origenbus.errors?.minlength">
+                                        El origen del bus debe tener almenos 3 letras
+
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group" id="be">
+                                    <label for="destino" class="form-control">Destino: </label>
+
+                                    <select [(ngModel)]="buses.destinobus" type="text" class="form-control" name="filterPost" formControlName="destinobus">
+                                        <option value="--">--</option>
+                                        <option *ngFor="let ruta of RutasListas | filterdestinos:filterPost" >{{ruta.destino}}</option> 
+                                    </select>
+
+                                </div>
+                                <div class="alert-danger" *ngIf="destinobus && destinobus.invalid  && (destinobus.dirty || destinobus.touched)">
+
+                                    <div class="container-error-message" *ngIf="destinobus.errors?.pattern">
+                                        El nombre del destino solo puede tener letras minusculas
+                                    </div>
+
+                                    <div class="container-error-message" *ngIf="destinobus.errors?.required">
+                                        El destino del bus es requerido
+
+                                    </div>
+
+                                    <div class="container-error-message" *ngIf="destinobus.errors?.minlength">
+                                        El destino del bus debe tener almenos 3 letras
+
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group" id="be">
+                                    <label class="form-control">Fecha: </label>
+                                    <input [(ngModel)]="buses.fecha" type="date" id="fechaReserva" class="form-control" name="txtfechainicio" formControlName="fecha">
+                                    <button (click)="refrescar()" type="button" id="bo2">Refrescar</button>
+                                </div>
+
+                                <div class="alert-danger" *ngIf="fecha && fecha.invalid  && (fecha.dirty || fecha.touched)">
+                                    <div class="container-error-message" *ngIf="fecha.errors?.required">
+                                        La Fecha es requerido
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="be">
+                                    <label class="form-control">Hora: </label>
+
+                                    <input [(ngModel)]="buses.hora" type="time" class="form-control" name="hora" formControlName="hora">
+                                </div>
+                                <div class="alert-danger" *ngIf="hora && hora.invalid  && (hora.dirty || hora.touched)">
+
+
+
+                                    <div class="container-error-message" *ngIf="hora.errors?.required">
+                                        La hora del bus es requerido
+
+                                    </div>
+
+
+
+                                </div>
+                                <div class="form-group" id="be">
+                                    <label class="form-control">Nombre Bus: </label>
+                                    <input [(ngModel)]="buses.nombrebus" type="text" class="form-control" placeholder="Nombre de bus" name="nombrebus" formControlName="nombrebus">
+                                </div>
+
+                                <div class="alert-danger" *ngIf="nombrebus && nombrebus.invalid  && (nombrebus.dirty || nombrebus.touched)">
+
+                                    <div class="container-error-message" *ngIf="nombrebus.errors?.pattern">
+                                        El nombre puede tener letras minusculas - mayusculas - numeros
+                                    </div>
+
+                                    <div class="container-error-message" *ngIf="nombrebus.errors?.required">
+                                        El nombre del bus es requerido
+
+                                    </div>
+
+                                    <div class="container-error-message" *ngIf="nombrebus.errors?.minlength">
+                                        El nombre del bus debe tener almenos 3 letras
+
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group" id="be">
+                                    <label for="tipo" class="form-control">Tipo </label>
+                                    <select [(ngModel)]="buses.tipobus" name="tipo" id="tipo" class="form-control" name="tipobus" formControlName="tipo">
+                                        
+                                        <option value="Bus Normal">Bus Normal</option>
+                                        <option value="Bus Cama">Bus Cama</option>
+                                        <option value="Bus Leito">Bus Leito</option>                              
+                                    </select>
+                                </div>
+                                <div class="alert-danger" *ngIf="tipo && tipo.invalid  && (tipo.dirty || tipo.touched)">
+
+
+
+                                    <div class="container-error-message" *ngIf="tipo.errors?.required">
+                                        El el tipo de bus es requerido
+
+                                    </div>
+
+
+                                </div>
+                                <div class="form-group" id="be">
+                                    <label class="form-control">Precio: </label>
+                                    <input [(ngModel)]="buses.precio" type="text" class="form-control" placeholder="Precio" name="precio" formControlName="precio">
+                                </div>
+                                <div class="alert-danger" *ngIf="precio && precio.invalid  && (precio.dirty || precio.touched)">
+
+                                    <div class="container-error-message" *ngIf="precio.errors?.min">
+                                        El precio no puede ser menor a 50 bs
+                                    </div>
+
+                                    <div class="container-error-message" *ngIf="precio.errors?.max">
+                                        El precio no puede ser mayor a 250 bs
+                                    </div>
+
+                                    <div class="container-error-message" *ngIf="precio.errors?.required">
+                                        El precio es requerido
+
+                                    </div>
+
+
+
+                                </div>
+                                <div>
+                                    <button (click)="agregar()" id="bo2" type="button">Registra</button>
+                                </div>
+                            </form>
+                            <form>
+                                <input id="bo1" type="submit" value="Cancelar" routerLink="/Mostrar_Horario">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>

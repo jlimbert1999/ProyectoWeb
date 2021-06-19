@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="form-group" id="be">
+        <label for="origen" class="form-control">Rutas De:  </label>
+        <select id="origen" class="form-control" name="filterPost" [(ngModel)]="filterPost">
+            <option value="todos">todos</option>
+            <option *ngFor="let ruta of RutasL">{{ruta}}</option>          
+        </select>
+    </div>
+    <div>
+        <button type="button" class="btn btn-dark" routerLink="/Registrar_Ruta">Registrar</button>
+    </div>
+    <div>
+        <h1>Rutas Armadas</h1>
+        <table class="table">
+            <thead class="thead-dark" id="cabe">
+                <tr>
+                    <th scope="col">Origen</th>
+                    <th scope="col">Destino</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
+                </tr>
+            </thead>
+            <tbody class="thead-dark" id="cabe">
+                <tr *ngFor="let ruta of RutasListas | filter:filterPost">
+                    <td>{{ruta.origen}}</td>
+                    <td>{{ruta.destino}}</td>
+
+                    <td>
+                        <button (click)="modificar(ruta.id_ruta)" type="button" class="btn btn-primary">Editar</button>
+                    </td>
+                    <td>
+                        <button (click)="eliminar(ruta.id_ruta)" type="button" class="btn btn-danger">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
