@@ -83,6 +83,12 @@ export class ModificarComponent implements OnInit {
         timer: 2000
       }) 
     }  
+    this.ServAdminService.valor=1
+  }
+  cancelar(){
+    this.ServAdminService.valor=1;
+    // window.location.reload();
+    this.router.navigate(["mostrar"])
   }
   get name(){return this.registroForm.get('name');}
   get name2(){return this.registroForm.get('name2');}

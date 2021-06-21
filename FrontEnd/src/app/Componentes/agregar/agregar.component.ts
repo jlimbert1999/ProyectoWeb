@@ -46,6 +46,7 @@ export class AgregarComponent implements OnInit {
    }
   ngOnInit(): void {
   }
+ 
   agregar(){
     if(this.registroForm.valid){
       this.ServAdminService.getAdmins().subscribe(
@@ -75,11 +76,13 @@ export class AgregarComponent implements OnInit {
               showConfirmButton: false,
               timer: 3000
             }) 
-            this.router.navigate(['/mostrar']) //inicio   
-
-
+            // this.router.navigate(['mostrar']) //inicio   
+            this.ServAdminService.valor=1;
+            let currentUrl = this.router.url;
+            this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+            this.router.onSameUrlNavigation = 'reload';
+            this.router.navigate(['/mostrar']);
           }
-
         }) 
     }
     else{
@@ -90,8 +93,16 @@ export class AgregarComponent implements OnInit {
         timer: 2000
       }) 
     }
-
   }
+
+  cancelar(){
+    this.ServAdminService.valor=1;
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['/mostrar']);
+  }
+
   
   get name(){return this.registroForm.get('name');}
   get name2(){return this.registroForm.get('name2');}

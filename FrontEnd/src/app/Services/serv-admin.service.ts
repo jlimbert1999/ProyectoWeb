@@ -10,7 +10,7 @@ export class ServAdminService {
   url='/api';
 
   constructor( private http: HttpClient) { }
-
+  valor:any
   getAdmins(){
     return this.http.get(this.url);
   }
@@ -38,6 +38,11 @@ export class ServAdminService {
   enviarCorreo(datos:any){
     return this.http.post(this.url+'/send-email', datos);
   }
+  regresarBarra(){
+
+    return 1;
+  }
+
 
   
 }

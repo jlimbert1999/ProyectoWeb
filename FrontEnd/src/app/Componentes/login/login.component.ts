@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         })  
-        this.Router.navigate(['inicio'])  
+        this.Router.navigate(['mostrar'])  
         
       }    
       

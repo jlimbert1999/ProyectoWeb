@@ -1,3 +1,4 @@
+import { ServAdminService } from './../Services/serv-admin.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BusService, Buses } from '../SERVICIOS/bus.service';
@@ -51,13 +52,21 @@ export class RegistroHorarioComponent implements OnInit {
     destino:''
   };
   
-  constructor(private BusService:BusService, private router:Router,private RutasService:RutasService, private _Calen:CalenService,  private Router:Router) {
+  constructor(private BusService:BusService, private router:Router,private RutasService:RutasService, private _Calen:CalenService,  private Router:Router, private ServAdminService:ServAdminService) {
     this.registroForm=this.createFormGroup()
    }
 
   ngOnInit(): void {
     this.listarRutas();
     this._Calen.Carga(["calen"]);
+  }
+  cancelar(){
+    this.ServAdminService.valor=3
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['/mostrar']);
+    
   }
   listaR(){
     
@@ -190,7 +199,11 @@ export class RegistroHorarioComponent implements OnInit {
         err=>console.log(err)
       );
       let palabra=(valorOrigen+"|"+valorDestino);
-      alert(palabra)
+      this.ServAdminService.valor=3
+      let currentUrl = this.router.url;
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigate(['/mostrar']);
       
       
      

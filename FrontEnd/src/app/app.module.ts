@@ -53,7 +53,7 @@ import { DatosViajeroComponent } from './Componentes/datos-viajero/datos-viajero
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule //para validaciones
-
+    
   ],
   providers: [
     {provide:JWT_OPTIONS, useValue:JWT_OPTIONS},

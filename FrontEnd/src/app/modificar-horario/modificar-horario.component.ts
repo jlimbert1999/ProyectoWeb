@@ -1,3 +1,4 @@
+import { ServAdminService } from './../Services/serv-admin.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Buses, BusService } from '../SERVICIOS/bus.service';
@@ -37,7 +38,7 @@ export class ModificarHorarioComponent implements OnInit {
 
   }
   registroForm: FormGroup;
-  constructor(private BusService:BusService, private router:Router, private activaRoute:ActivatedRoute) {
+  constructor(private BusService:BusService, private router:Router, private activaRoute:ActivatedRoute, private ServAdminService:ServAdminService) {
     this.registroForm=this.createFormGroup()
    }
 
@@ -80,7 +81,12 @@ export class ModificarHorarioComponent implements OnInit {
         },
         err=>console.log(err)
       );
-      this.router.navigate(['/Mostrar_Horario'])
+      // this.router.navigate(['/Mostrar_Horario'])
+      this.ServAdminService.valor=3
+      let currentUrl = this.router.url;
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigate(['/mostrar']);
 
     }else{
       Swal.fire({
@@ -93,6 +99,12 @@ export class ModificarHorarioComponent implements OnInit {
             timer: 2000
       })
     }
+  }
+  cancelar(){
+    this.ServAdminService.valor=3
+    this.router.navigate(["mostrar"])
+    
+    
   }
 
   get hora(){return this.registroForm.get('hora');}

@@ -10,12 +10,16 @@ import Swal from 'sweetalert2';
 })
 export class MostrarComponent implements OnInit {
   
+  opcion:number
 
   ListarAdmin:Admin[]=[];
-  constructor(private ServAdminService:ServAdminService, private router:Router) { }
+  constructor(private ServAdminService:ServAdminService, private router:Router) {
+    this.opcion=-1;
+   }
 
   ngOnInit(): void {
     this.listarAdmins()
+    this.opcion=this.ServAdminService.valor
   }
   listarAdmins(){
     this.ServAdminService.getAdmins().subscribe(
@@ -54,9 +58,35 @@ export class MostrarComponent implements OnInit {
   modificar(id:string){
     this.router.navigate(['/edit/'+id])
   }
+  seleccion1(){
+    this.opcion=1
+    // let ops=(<HTMLInputElement>document.getElementById()); 
+    // let select=ops.id
+    // if(select=="op1"){
+    //   this.opcion=1;
+    // }
+  }
+  seleccion2(){
+    this.opcion=2
+    // let ops=(<HTMLInputElement>document.getElementById(id)); 
+    // let select=ops.id
+    // if(select=="op1"){
+    //   this.opcion=1;
+    // }
+  }
+  seleccion3(){
+    this.opcion=3
+
+  }
+  seleccion4(){
+    this.opcion=4
+  }
+
+  
 
   outLogin(){
     localStorage.clear()
+    this.router.navigate(["login"])
 
   }
 

@@ -85,6 +85,18 @@ export class RegistrarRutaComponent implements OnInit {
     // }
     
   }
+  enveto(){
+    let vv=document.getElementById("bb")
+    vv?.addEventListener("click", this.w3_open)
+
+  }
+  w3_open() {
+    
+    document.getElementById("main")!.style.marginLeft = "25%";
+    document.getElementById("mySidebar")!.style.width = "25%";
+    document.getElementById("mySidebar")!.style.display = "block";
+    document.getElementById("openNav")!.style.display = 'none';
+  }
   
   get origen(){return this.registroForm.get('origen');}
   get destino(){return this.registroForm.get('destino');}
