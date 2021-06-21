@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
         }
         else{
           var cont=localStorage.getItem('ver')!
-          // console.log('ess'+cont.length)
           if(cont.length>3){
             Swal.fire({
               icon: 'error',
@@ -50,7 +49,7 @@ export class LoginComponent implements OnInit {
               showConfirmButton: false,
               timer: 3000
             })      
-            setTimeout(function(){localStorage.removeItem('ver')},9000)     
+            setTimeout(function(){localStorage.removeItem('ver')},9000)//---  
           }
           else{
             i.push('1')

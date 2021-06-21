@@ -33,60 +33,60 @@ export class RegistrarRutaComponent implements OnInit {
   ngOnInit(): void {
   }
   agregar(){
-    if(this.registroForm.valid){
-      this.RutasService.getRutas().subscribe(
-        res=>{
-          let valores=JSON.stringify(res)
-          let cadena=JSON.parse(valores)
-          let val=false
-          //console.log('esss',cadena[2].nombreus)
-          for(let i=0;i<cadena.length;i++){
-            if(cadena[i].origen===this.ruta.origen && cadena[i].destino===this.ruta.destino){
-              Swal.fire({
-                icon: 'error',
-                title: 'La Ruta ya Existe',
-                showConfirmButton: false,
-                timer: 2000
-              }) 
-              val=true
-              break
-            }
-          }//
-          if(val!=true){
-            this.RutasService.addRuta(this.ruta).subscribe();
-              Swal.fire({
-              icon: 'success',
+    // if(this.registroForm.valid){
+    //   this.RutasService.getRutas().subscribe(
+    //     res=>{
+    //       let valores=JSON.stringify(res)
+    //       let cadena=JSON.parse(valores)
+    //       let val=false
+    //       //console.log('esss',cadena[2].nombreus)
+    //       for(let i=0;i<cadena.length;i++){
+    //         if(cadena[i].origen===this.ruta.origen && cadena[i].destino===this.ruta.destino){
+    //           Swal.fire({
+    //             icon: 'error',
+    //             title: 'La Ruta ya Existe',
+    //             showConfirmButton: false,
+    //             timer: 2000
+    //           }) 
+    //           val=true
+    //           break
+    //         }
+    //       }//
+    //       if(val!=true){
+    //         this.RutasService.addRuta(this.ruta).subscribe();
+    //           Swal.fire({
+    //           icon: 'success',
   
-            title: 'Registro Exitoso!',
+    //         title: 'Registro Exitoso!',
   
-            showConfirmButton: false,
+    //         showConfirmButton: false,
   
-            timer: 2000
+    //         timer: 2000
         
-          })
-      this.router.navigate(['/Mostrar_Rutas']);
+    //       })
+    //   this.router.navigate(['/Mostrar_Rutas']);
 
-          }
+    //       }
 
-        })
+    //     })
       
-    }
-    else{
-      Swal.fire({
-        icon: 'error',
+    // }
+    // else{
+    //   Swal.fire({
+    //     icon: 'error',
   
-            title: 'Ingrese todos los campos requeridos',
+    //         title: 'Ingrese todos los campos requeridos',
   
-            showConfirmButton: false,
+    //         showConfirmButton: false,
   
-            timer: 2000
+    //         timer: 2000
         
-      })
-    }
+    //   })
+    // }
     
   }
+  
   get origen(){return this.registroForm.get('origen');}
-
   get destino(){return this.registroForm.get('destino');}
 
 }

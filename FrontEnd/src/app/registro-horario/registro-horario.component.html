@@ -11,12 +11,15 @@
                         <div class="card-body">
                             <form [formGroup]="registroForm" method="POST">
                                 <h3>Registrar Bus</h3>
+                                
                                 <div class="form-group" id="be">
                                     <!-- cargar origen destino respecto al origen -->
+                                    <button (click)="addNewOrigen()"> Agregar Origen</button>
+                                    <button (click)="addNewDestino()"> Agregar Destino</button>
 
                                     <label for="origen" class="form-control">Origen: </label>
-                                    <select [(ngModel)]="buses.origenbus" class="form-control" name="filterPost" [(ngModel)]="filterPost" formControlName="origenbus">
-                                        <option value="--">--</option>
+                                    <select [(ngModel)]="buses.origenbus" class="form-control" name="filterPost" [(ngModel)]="filterPost" formControlName="origenbus" id="selectOrigen" (click)="reloadDestinos()">
+                                        <option value="--" >--</option>
                                         <option  *ngFor="let ruta of RutasL"  >{{ruta}}</option> 
                                     </select>
                                     <!--<input [(ngModel)]="buses.destinobus" type="text" class="form-control" placeholder="Ejm: cochabamba" name="destinobus">-->
@@ -41,10 +44,9 @@
 
                                 <div class="form-group" id="be">
                                     <label for="destino" class="form-control">Destino: </label>
-
-                                    <select [(ngModel)]="buses.destinobus" type="text" class="form-control" name="filterPost" formControlName="destinobus">
+                                    <select [(ngModel)]="buses.destinobus" type="text" class="form-control" name="filterPost" formControlName="destinobus" id="selectDestino" (click)="elegitRutaSinRep()">
                                         <option value="--">--</option>
-                                        <option *ngFor="let ruta of RutasListas | filterdestinos:filterPost" >{{ruta.destino}}</option> 
+                                        <option *ngFor="let ruta of RutasListas" >{{ruta}}</option> 
                                     </select>
 
                                 </div>
